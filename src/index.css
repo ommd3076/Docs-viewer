@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  :root {
+    --background: #DCE1E5;
+    --foreground: #14171A;
+    --card: #F3F5F7;
+    --card-pure: #FFFFFF;
+    --card-obsidian: #1C1E21;
+    --border: rgba(20, 23, 26, 0.12);
+    --ring: #2563EB;
+    --muted: #E6EAEE;
+    --muted-foreground: #64748B;
+    --accent-blue: #93C5FD;
+    --accent-blue-strong: #2563EB;
+    --accent-yellow: #FDE047;
+    --accent-yellow-strong: #D97706;
+    --accent-slate: #CBD5E1;
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgba(100, 116, 139, 0.34);
+    --scrollbar-thumb-hover: rgba(37, 99, 235, 0.65);
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .dark {
+    --background: #0D1117;
+    --foreground: #F0F4F8;
+    --card: #161B22;
+    --card-pure: #1C222B;
+    --card-obsidian: #090C10;
+    --border: rgba(240, 244, 248, 0.09);
+    --ring: #60A5FA;
+    --muted: #21262D;
+    --muted-foreground: #94A3B8;
+    --accent-blue: #60A5FA;
+    --accent-blue-strong: #3B82F6;
+    --accent-yellow: #FACC15;
+    --accent-yellow-strong: #EAB308;
+    --accent-slate: #334155;
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgba(148, 163, 184, 0.24);
+    --scrollbar-thumb-hover: rgba(96, 165, 250, 0.65);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 9999px;
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    transition: background-color 160ms ease;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Silky circular radial reveal during Light/Dark theme switch */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Synchronized fallback transition if View Transitions API is unavailable */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Ultra-clean hidden-until-hover horizontal scroller for tab strips */
+.vault-tab-scroll {
+  scrollbar-width: none;
+}
+.vault-tab-scroll::-webkit-scrollbar {
+  height: 3px;
+}
+.vault-tab-scroll::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.vault-tab-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+}
+
+.hatch-dark {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.14) 0px,
+    rgba(255, 255, 255, 0.14) 1.5px,
+    transparent 1.5px,
+    transparent 6px
+  );
+}
+
+.hatch-light {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(20, 23, 26, 0.16) 0px,
+    rgba(20, 23, 26, 0.16) 1.5px,
+    transparent 1.5px,
+    transparent 6px
+  );
+}
+
+.hatch-blue {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(30, 58, 138, 0.22) 0px,
+    rgba(30, 58, 138, 0.22) 1.5px,
+    transparent 1.5px,
+    transparent 5.5px
+  );
+}
+
+/* Custom DOCX preview styling for clean local fidelity */
+.docx-wrapper {
+  background: transparent !important;
+  padding: 16px !important;
+}
+.docx-wrapper > section.docx {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 16px !important;
+  margin-bottom: 20px !important;
+}

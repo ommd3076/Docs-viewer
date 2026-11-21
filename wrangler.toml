@@ -1,0 +1,10 @@
+name = "vaultdocs-local-workspace"
+compatibility_date = "2026-11-01"
+pages_build_output_dir = "dist"
+
+# Cloudflare Workers Static Assets configuration
+# Note: All document parsing, rendering, indexing, and comparison execute 100% client-side.
+# Never route document conversion through Cloudflare Workers.
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"

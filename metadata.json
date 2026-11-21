@@ -1,0 +1,6 @@
+{
+  "name": "VaultDocs — Local-First Document Workspace",
+  "description": "Privacy-first browser document workspace for viewing, comparing, and analyzing PDF, DOCX, PPTX, XLSX, CSV, TXT, and images 100% locally on your device.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
